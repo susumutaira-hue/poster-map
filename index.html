@@ -29,6 +29,7 @@
   .leaflet-control-attribution { font-size: 9px !important; }
   .leaflet-control-zoom { display: none; }
 
+  /* TOP BAR */
   .topbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 400;
     padding: 12px 16px;
@@ -48,9 +49,10 @@
     background: rgba(28,28,30,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-radius: 16px; padding: 6px 14px; text-align: center; min-width: 52px;
   }
-  .stat-num { font-size: 20px; font-weight: 700; line-height: 1; }
+  .stat-num { font-size: 20px; font-weight: 700; line-height: 1; color: var(--white); }
   .stat-label { font-size: 9px; color: var(--grey); margin-top: 1px; }
 
+  /* SYNC BADGE */
   .sync-badge {
     position: fixed; top: calc(80px + env(safe-area-inset-top, 0px));
     left: 50%; transform: translateX(-50%); z-index: 400;
@@ -65,6 +67,7 @@
   .sync-dot.error { background: var(--red); }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
+  /* FABs */
   .fabs {
     position: fixed; right: 16px; bottom: calc(140px + var(--safe-bottom));
     z-index: 400; display: flex; flex-direction: column; gap: 12px;
@@ -78,8 +81,10 @@
   }
   .fab:active { transform: scale(0.9); }
   .fab-locate { background: var(--white); color: var(--dark); }
-  .fab-reload, .fab-list { background: var(--card-bg); color: var(--white); border: 1px solid rgba(255,255,255,0.12); }
+  .fab-reload { background: var(--card-bg); color: var(--white); border: 1px solid rgba(255,255,255,0.12); }
+  .fab-list { background: var(--card-bg); color: var(--white); border: 1px solid rgba(255,255,255,0.12); }
 
+  /* ADD BUTTON */
   .btn-add-wrap {
     position: fixed; bottom: calc(70px + var(--safe-bottom));
     left: 50%; transform: translateX(-50%); z-index: 400;
@@ -95,6 +100,7 @@
   }
   .btn-add:active { transform: scale(0.95); }
 
+  /* BOTTOM SHEET */
   .sheet-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 490; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
   .sheet-backdrop.open { opacity: 1; pointer-events: all; }
   .bottom-sheet {
@@ -110,7 +116,7 @@
   .sheet-subtitle { font-size: 11px; color: var(--grey); margin-top: 2px; }
   .sheet-close { margin-left: auto; background: var(--surface); border: none; color: var(--grey); width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-  .legend { display: flex; gap: 8px; padding: 0 16px 10px; flex-wrap: wrap; flex-shrink: 0; }
+  .legend { display: flex; gap: 10px; padding: 0 16px 10px; flex-wrap: wrap; flex-shrink: 0; }
   .legend-item { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--grey); }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
@@ -124,27 +130,23 @@
   .pin-card {
     background: var(--surface); border-radius: 14px; padding: 14px;
     margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start;
-    cursor: pointer; border: 1.5px solid transparent; transition: opacity 0.15s;
+    border: 1.5px solid transparent;
   }
-  .pin-card:active { opacity: 0.7; }
-
-  .pin-id-circle {
-    width: 44px; height: 44px; border-radius: 50%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 1px; border: 2px solid;
-  }
-  .pin-id-label { font-size: 8px; font-weight: 700; opacity: 0.7; line-height: 1; }
-  .pin-id-num { font-size: 14px; font-weight: 700; line-height: 1.2; }
-
+  .pin-dot { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
   .pin-info { flex: 1; min-width: 0; }
   .pin-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pin-coords { font-size: 10px; color: var(--grey); margin-top: 2px; }
+  .pin-coords { font-size: 11px; color: var(--grey); margin-top: 2px; }
   .pin-note-text { font-size: 12px; color: var(--grey); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pin-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-top: 6px; display: inline-block; }
-  .pin-thumb { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
-  .pin-del { background: none; border: none; color: var(--grey); font-size: 20px; cursor: pointer; padding: 4px; flex-shrink: 0; align-self: center; }
+  .pin-bottom { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
 
-  /* MODAL */
+  .pin-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 10px; cursor: pointer; transition: opacity 0.15s; }
+  .pin-badge:active { opacity: 0.7; }
+
+  .pin-actions { display: flex; gap: 6px; margin-left: auto; }
+  .pin-btn { background: var(--card-bg); border: none; color: var(--grey); font-size: 18px; cursor: pointer; padding: 6px; border-radius: 8px; }
+  .pin-btn:active { opacity: 0.7; }
+
+  /* MODAL 登録 */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 600; display: flex; align-items: flex-end; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
   .modal-overlay.open { opacity: 1; pointer-events: all; }
   .modal {
@@ -157,7 +159,6 @@
   .modal-handle { width: 36px; height: 4px; background: var(--surface); border-radius: 2px; margin: 0 auto 18px; }
   .modal-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
   .modal-coords { font-size: 11px; color: var(--grey); margin-bottom: 20px; }
-
   .form-label { font-size: 12px; font-weight: 600; color: var(--grey); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; display: block; }
   .form-input {
     width: 100%; background: var(--surface); border: 1.5px solid rgba(255,255,255,0.08);
@@ -186,22 +187,48 @@
   .photo-preview { width: 100%; max-height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 16px; display: none; }
 
   .btn-submit {
-    width: 100%; background: var(--red); color: white; border: none;
-    border-radius: 14px; padding: 18px; font-size: 17px; font-weight: 700;
-    font-family: 'Noto Sans JP', sans-serif; cursor: pointer;
+    width: 100%; background: var(--red); color: white; border: none; border-radius: 14px; padding: 18px;
+    font-size: 17px; font-weight: 700; font-family: 'Noto Sans JP', sans-serif; cursor: pointer;
     box-shadow: 0 4px 16px rgba(208,2,27,0.4); margin-bottom: 10px;
-    transition: opacity 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.15s;
   }
   .btn-submit:active { opacity: 0.8; }
   .btn-submit:disabled { opacity: 0.5; }
   .btn-cancel-modal { width: 100%; background: var(--surface); color: var(--grey); border: none; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 600; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; }
 
+  /* ステータス変更モーダル */
+  .status-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 700; display: flex; align-items: flex-end; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+  .status-modal-overlay.open { opacity: 1; pointer-events: all; }
+  .status-modal {
+    background: var(--card-bg); border-radius: 20px 20px 0 0; width: 100%;
+    padding: 20px 20px calc(20px + var(--safe-bottom));
+    transform: translateY(40px); transition: transform 0.25s;
+  }
+  .status-modal-overlay.open .status-modal { transform: translateY(0); }
+  .status-modal-handle { width: 36px; height: 4px; background: var(--surface); border-radius: 2px; margin: 0 auto 18px; }
+  .status-modal-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .status-modal-name { font-size: 13px; color: var(--grey); margin-bottom: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .status-options { display: flex; flex-direction: column; gap: 10px; }
+  .status-option {
+    display: flex; align-items: center; gap: 14px; padding: 16px;
+    background: var(--surface); border-radius: 14px; border: 2px solid transparent;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .status-option:active { opacity: 0.7; }
+  .status-option.current { border-width: 2px; }
+  .status-option-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .status-option-label { font-size: 15px; font-weight: 600; }
+  .status-option-check { margin-left: auto; font-size: 18px; opacity: 0; }
+  .status-option.current .status-option-check { opacity: 1; }
+  .btn-cancel-status { width: 100%; background: var(--surface); color: var(--grey); border: none; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 600; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; margin-top: 10px; }
+
+  /* TOAST */
   .toast {
     position: fixed; bottom: calc(90px + var(--safe-bottom));
     left: 50%; transform: translateX(-50%) translateY(10px);
     background: rgba(28,28,30,0.95); backdrop-filter: blur(10px);
     color: white; font-size: 13px; font-weight: 500; padding: 10px 20px; border-radius: 20px;
-    z-index: 800; opacity: 0; transition: opacity 0.25s, transform 0.25s; white-space: nowrap; pointer-events: none;
+    z-index: 900; opacity: 0; transition: opacity 0.25s, transform 0.25s; white-space: nowrap; pointer-events: none;
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
@@ -222,11 +249,11 @@
   </div>
   <div class="topbar-stats">
     <div class="stat-pill">
-      <div class="stat-num" id="total-count" style="color:#FFD60A">0</div>
+      <div class="stat-num" id="total-count">0</div>
       <div class="stat-label">登録</div>
     </div>
     <div class="stat-pill">
-      <div class="stat-num" id="ok-count" style="color:#007AFF">0</div>
+      <div class="stat-num" style="color:#007AFF" id="ok-count">0</div>
       <div class="stat-label">掲示済</div>
     </div>
   </div>
@@ -247,12 +274,13 @@
   <button class="btn-add" id="btn-add" onclick="onAddTap()">＋ ここに登録</button>
 </div>
 
+<!-- 一覧ボトムシート -->
 <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeSheet()"></div>
 <div class="bottom-sheet" id="bottom-sheet">
   <div class="sheet-handle"></div>
   <div class="sheet-header">
     <div>
-      <div class="sheet-title">📋 掲示場所一覧</div>
+      <div class="sheet-title">📋 候補地一覧</div>
       <div class="sheet-subtitle" id="sheet-subtitle">読み込み中...</div>
     </div>
     <button class="sheet-close" onclick="closeSheet()">✕</button>
@@ -269,46 +297,52 @@
   </div>
 </div>
 
+<!-- 登録モーダル -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">📍 掲示場所を登録</div>
+    <div class="modal-title">📍 候補地を登録</div>
     <div class="modal-coords" id="modal-coords"></div>
-
     <label class="form-label">場所の名前</label>
     <input class="form-input" id="inp-name" type="text" placeholder="例：○○駅前の電柱">
-
     <label class="form-label">ステータス</label>
-    <div class="status-grid" id="status-grid">
-      <button class="status-btn" onclick="selectStatus('未交渉')">📋<br>未交渉</button>
-      <button class="status-btn" onclick="selectStatus('交渉中')">💬<br>交渉中</button>
-      <button class="status-btn" onclick="selectStatus('許可')">✅<br>許可</button>
+    <div class="status-grid">
+      <button class="status-btn" onclick="selectStatus('未交渉')">📋 未交渉</button>
+      <button class="status-btn" onclick="selectStatus('交渉中')">💬 交渉中</button>
+      <button class="status-btn" onclick="selectStatus('許可')">✅ 許可</button>
       <div class="status-last">
         <button class="status-btn" onclick="selectStatus('NG')">❌ NG</button>
         <button class="status-btn" onclick="selectStatus('掲示済')">📌 掲示済</button>
       </div>
     </div>
-
-    <label class="form-label">備考</label>
+    <label class="form-label">メモ</label>
     <textarea class="form-input" id="inp-note" placeholder="所有者名・確認事項など"></textarea>
-
     <label class="form-label">写真</label>
     <label class="photo-upload" for="inp-photo">
-      <span class="icon">📷</span>
-      <span>タップして写真を追加</span>
+      <span class="icon">📷</span><span>タップして写真を追加</span>
     </label>
     <input type="file" id="inp-photo" accept="image/*" capture="environment">
     <img class="photo-preview" id="photo-preview">
-
     <button class="btn-submit" id="btn-submit" onclick="savePin()">登録する</button>
     <button class="btn-cancel-modal" onclick="closeModal()">キャンセル</button>
+  </div>
+</div>
+
+<!-- ステータス変更モーダル -->
+<div class="status-modal-overlay" id="status-modal">
+  <div class="status-modal">
+    <div class="status-modal-handle"></div>
+    <div class="status-modal-title">ステータスを変更</div>
+    <div class="status-modal-name" id="status-modal-name"></div>
+    <div class="status-options" id="status-options"></div>
+    <button class="btn-cancel-status" onclick="closeStatusModal()">キャンセル</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzCp1BNzWyEcooqj2iJhajNunlPLhB6m7HsVtdibuCAi3UnXnbQnDPfYKGxVX6OOxFc/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycby_DUk8Bl4aVaakamx8vtJUX6l-SL-q9uNJdGChf4DpGzvxHy-w3PqNfSprK8vDp069/exec';
 
 const STATUS_CONFIG = {
   '未交渉': { color: '#8E8E93', emoji: '📋' },
@@ -317,10 +351,12 @@ const STATUS_CONFIG = {
   'NG':     { color: '#FF3B30', emoji: '❌' },
   '掲示済': { color: '#007AFF', emoji: '📌' },
 };
-function sc(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).color; }
-function se(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).emoji; }
+const STATUS_KEYS = Object.keys(STATUS_CONFIG);
+function sColor(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).color; }
+function sEmoji(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).emoji; }
 
-const map = L.map('map', { zoomControl: false }).setView([35.6812, 139.7671], 14);
+// MAP
+const map = L.map('map', { zoomControl: false }).setView([34.68, 135.83], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
 
 let tappedLatLng = null;
@@ -329,9 +365,10 @@ let photoData = null;
 let pins = [];
 let userMarker = null;
 let markersMap = {};
+let editingPinId = null;
 
 function makeIcon(status) {
-  const color = sc(status);
+  const color = sColor(status);
   return L.divIcon({
     html: `<div style="width:24px;height:30px;background:${color};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.4)"></div>`,
     iconSize:[24,30], iconAnchor:[12,30], className:''
@@ -339,11 +376,11 @@ function makeIcon(status) {
 }
 
 function makePopup(pin) {
-  const color = sc(pin.status);
-  return `<div style="font-family:'Noto Sans JP',sans-serif;min-width:160px;font-size:13px">
-    <div style="font-size:11px;font-weight:700;color:${color};margin-bottom:4px">${pin.id}</div>
+  const color = sColor(pin.status);
+  const emoji = sEmoji(pin.status);
+  return `<div style="font-family:'Noto Sans JP',sans-serif;min-width:150px;font-size:13px">
     <strong>${pin.name}</strong><br>
-    <span style="color:${color};font-size:11px;font-weight:700">${se(pin.status)} ${pin.status}</span>
+    <span style="color:${color};font-size:11px;font-weight:700">${emoji} ${pin.status}</span>
     ${pin.note ? `<p style="margin-top:5px;font-size:12px;color:#555">${pin.note}</p>` : ''}
   </div>`;
 }
@@ -361,6 +398,7 @@ function onAddTap() {
   openModal();
 }
 
+// LOCATE
 function locateMe() {
   const btn = document.getElementById('btn-locate');
   btn.classList.add('locating'); btn.textContent = '⏳';
@@ -379,72 +417,75 @@ function locateMe() {
   );
 }
 
-window.addEventListener('load', () => {
-  if (navigator.geolocation) locateMe();
-  loadFromSheet();
-});
+window.addEventListener('load', () => { loadFromSheet(); });
 
-function showSync(state, msg) {
-  const badge = document.getElementById('sync-badge');
-  document.getElementById('sync-dot').className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
-  document.getElementById('sync-text').textContent = msg;
-  badge.classList.add('show');
-  if (state === 'ok') setTimeout(() => badge.classList.remove('show'), 2500);
-}
-
-function jsonpFetch(url) {
+// JSONP
+function jsonpGet(params) {
   return new Promise((resolve, reject) => {
-    const cbName = 'cb_' + Date.now();
+    const cbName = 'cb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
     const script = document.createElement('script');
-    const timer = setTimeout(() => { delete window[cbName]; script.remove(); reject(new Error('timeout')); }, 10000);
-    window[cbName] = (data) => { clearTimeout(timer); delete window[cbName]; script.remove(); resolve(data); };
-    script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName + '&t=' + Date.now();
-    script.onerror = () => { clearTimeout(timer); reject(new Error('error')); };
+    const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 15000);
+    function cleanup() { clearTimeout(timer); delete window[cbName]; script.remove(); }
+    window[cbName] = (data) => { cleanup(); resolve(data); };
+    const query = Object.entries({ ...params, callback: cbName, t: Date.now() })
+      .map(([k,v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('&');
+    script.src = GAS_URL + '?' + query;
+    script.onerror = () => { cleanup(); reject(new Error('script error')); };
     document.head.appendChild(script);
   });
 }
 
+// SYNC
+function showSync(state, msg) {
+  const badge = document.getElementById('sync-badge');
+  const dot = document.getElementById('sync-dot');
+  document.getElementById('sync-text').textContent = msg;
+  dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
+  badge.classList.add('show');
+  if (state === 'ok') setTimeout(() => badge.classList.remove('show'), 2500);
+}
+
 async function loadFromSheet() {
-  showSync('syncing', 'データを読み込み中...');
+  showSync('syncing', 'スプレッドシートを読み込み中...');
   try {
-    const data = await jsonpFetch(GAS_URL);
+    const data = await jsonpGet({ action: 'list' });
     Object.values(markersMap).forEach(m => m.remove());
     markersMap = {}; pins = [];
-
-    data.forEach((p) => {
+    data.forEach((p, i) => {
       if (!p.lat || !p.lng) return;
-      const pin = {
-        id: p.id, latlng: L.latLng(parseFloat(p.lat), parseFloat(p.lng)),
-        name: p.name, note: p.note, status: p.status || '未交渉',
-        photo: null, synced: true
-      };
+      const pin = { id: p.id, latlng: L.latLng(parseFloat(p.lat), parseFloat(p.lng)), name: p.name, note: p.note, status: p.status || '未交渉', number: i + 1, synced: true };
       const marker = L.marker(pin.latlng, { icon: makeIcon(pin.status) }).addTo(map);
       marker.bindPopup(makePopup(pin));
-      pin.marker = marker;
-      markersMap[pin.id] = marker;
-      pins.push(pin);
+      pin.marker = marker; markersMap[pin.id] = marker; pins.push(pin);
     });
-
     renderList(); updateStats();
     showSync('ok', `✅ ${pins.length}件を読み込みました`);
+    document.getElementById('sheet-subtitle').textContent = `${pins.length}件 · 同期済み`;
   } catch(e) {
     showSync('error', '⚠️ 読み込み失敗');
     showToast('⚠️ 読み込みに失敗しました');
-    document.getElementById('sheet-subtitle').textContent = '読み込み失敗 - 🔄で再試行';
+    document.getElementById('sheet-subtitle').textContent = '読み込み失敗';
   }
 }
 
-async function postToSheet(action, pinData) {
+async function addToSheet(pin) {
   try {
-    await fetch(GAS_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action, ...pinData }),
-      headers: { 'Content-Type': 'text/plain' }
-    });
+    await jsonpGet({ action: 'add', id: pin.id, name: pin.name, lat: pin.latlng.lat, lng: pin.latlng.lng, status: pin.status, note: pin.note || '' });
     return true;
   } catch(e) { return false; }
 }
 
+async function deleteFromSheet(id) {
+  try { await jsonpGet({ action: 'delete', id }); return true; }
+  catch(e) { return false; }
+}
+
+async function updateStatusInSheet(id, status) {
+  try { await jsonpGet({ action: 'updateStatus', id, status }); return true; }
+  catch(e) { return false; }
+}
+
+// 登録モーダル
 function openModal() {
   document.getElementById('modal-coords').textContent = `緯度 ${tappedLatLng.lat.toFixed(5)}　経度 ${tappedLatLng.lng.toFixed(5)}`;
   document.getElementById('inp-name').value = '';
@@ -458,21 +499,17 @@ function openModal() {
   document.getElementById('modal').classList.add('open');
   setTimeout(() => document.getElementById('inp-name').focus(), 300);
 }
-
 function closeModal() { document.getElementById('modal').classList.remove('open'); }
 
 function selectStatus(s) {
   selectedStatus = s;
-  document.querySelectorAll('.status-btn').forEach(btn => {
-    const matches = btn.textContent.includes(s);
-    if (matches) {
-      btn.style.borderColor = sc(s);
-      btn.style.color = sc(s);
-      btn.style.background = sc(s) + '22';
+  document.querySelectorAll('.status-grid .status-btn, .status-last .status-btn').forEach(btn => {
+    const isSelected = btn.textContent.trim().includes(s);
+    if (isSelected) {
+      const color = sColor(s);
+      btn.style.borderColor = color; btn.style.color = color; btn.style.background = color + '22';
     } else {
-      btn.style.borderColor = '';
-      btn.style.color = '';
-      btn.style.background = '';
+      btn.style.borderColor = ''; btn.style.color = ''; btn.style.background = '';
     }
   });
 }
@@ -480,100 +517,102 @@ function selectStatus(s) {
 document.getElementById('inp-photo').onchange = (e) => {
   const file = e.target.files[0]; if (!file) return;
   const reader = new FileReader();
-  reader.onload = (ev) => {
-    photoData = ev.target.result;
-    const img = document.getElementById('photo-preview');
-    img.src = photoData; img.style.display = 'block';
-  };
+  reader.onload = (ev) => { photoData = ev.target.result; const img = document.getElementById('photo-preview'); img.src = photoData; img.style.display = 'block'; };
   reader.readAsDataURL(file);
 };
 
 async function savePin() {
   const name = document.getElementById('inp-name').value.trim() || '候補地';
   const note = document.getElementById('inp-note').value.trim();
-  const tempId = 'P-???';
-
+  const id = String(Date.now());
   const btn = document.getElementById('btn-submit');
-  btn.innerHTML = '<span class="spinning">⏳</span> 保存中...';
-  btn.disabled = true;
+  btn.innerHTML = '<span class="spinning">⏳</span> 保存中...'; btn.disabled = true;
+
+  const pin = { id, latlng: tappedLatLng, name, note, status: selectedStatus, number: pins.length + 1, synced: false };
+  const marker = L.marker(tappedLatLng, { icon: makeIcon(selectedStatus) }).addTo(map);
+  marker.bindPopup(makePopup(pin)); marker.openPopup();
+  pin.marker = marker; markersMap[id] = marker; pins.push(pin);
+
+  closeModal(); renderList(); updateStats(); tappedLatLng = null;
 
   showSync('syncing', 'スプレッドシートに保存中...');
-
-  // GASに送信してIDを受け取る
-  let assignedId = tempId;
-  try {
-    const res = await fetch(GAS_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action: 'add', name, lat: tappedLatLng.lat, lng: tappedLatLng.lng, status: selectedStatus, note, photoUrl: '' }),
-      headers: { 'Content-Type': 'text/plain' }
-    });
-    const result = await res.json();
-    if (result.success && result.id) assignedId = result.id;
-  } catch(e) {}
-
-  const pin = {
-    id: assignedId, latlng: tappedLatLng, name, note,
-    status: selectedStatus, photo: photoData, synced: assignedId !== tempId
-  };
-
-  const marker = L.marker(tappedLatLng, { icon: makeIcon(selectedStatus) }).addTo(map);
-  marker.bindPopup(makePopup(pin));
-  marker.openPopup();
-  pin.marker = marker;
-  markersMap[assignedId] = marker;
-  pins.push(pin);
-
-  closeModal();
-  renderList(); updateStats();
-  tappedLatLng = null;
-
-  if (pin.synced) {
-    showSync('ok', `✅ ${assignedId} として登録しました`);
-    showToast(`✅ ${assignedId} で登録しました！`);
-  } else {
-    showSync('error', '⚠️ シート保存失敗');
-    showToast('⚠️ シート同期に失敗しました');
-  }
+  const ok = await addToSheet(pin);
+  if (ok) { pin.synced = true; showSync('ok', '✅ シートに保存しました'); showToast('✅ 登録・同期しました！'); }
+  else { showSync('error', '⚠️ シート保存失敗'); showToast('⚠️ シート同期に失敗しました'); }
   renderList();
 }
 
+// ステータス変更モーダル
+function openStatusModal(id) {
+  const pin = pins.find(p => String(p.id) === String(id)); if (!pin) return;
+  editingPinId = id;
+  document.getElementById('status-modal-name').textContent = pin.name;
+  const opts = document.getElementById('status-options');
+  opts.innerHTML = STATUS_KEYS.map(s => {
+    const color = sColor(s);
+    const isCurrent = pin.status === s;
+    return `<div class="status-option ${isCurrent ? 'current' : ''}" 
+      style="${isCurrent ? `border-color:${color};background:${color}22` : ''}"
+      onclick="applyStatus('${s}')">
+      <div class="status-option-dot" style="background:${color}"></div>
+      <div class="status-option-label" style="${isCurrent ? `color:${color}` : ''}">${sEmoji(s)} ${s}</div>
+      <div class="status-option-check" style="color:${color}">✓</div>
+    </div>`;
+  }).join('');
+  document.getElementById('status-modal').classList.add('open');
+}
+
+function closeStatusModal() {
+  document.getElementById('status-modal').classList.remove('open');
+  editingPinId = null;
+}
+
+async function applyStatus(newStatus) {
+  const pin = pins.find(p => String(p.id) === String(editingPinId)); if (!pin) return;
+  const oldStatus = pin.status;
+  pin.status = newStatus;
+
+  // マーカー更新
+  if (pin.marker) { pin.marker.setIcon(makeIcon(newStatus)); pin.marker.setPopupContent(makePopup(pin)); }
+  closeStatusModal(); renderList(); updateStats();
+  showToast(`${sEmoji(newStatus)} ${newStatus} に変更しました`);
+
+  showSync('syncing', 'シートを更新中...');
+  const ok = await updateStatusInSheet(pin.id, newStatus);
+  if (ok) { showSync('ok', '✅ シートを更新しました'); }
+  else { pin.status = oldStatus; if (pin.marker) { pin.marker.setIcon(makeIcon(oldStatus)); } showSync('error', '⚠️ シート更新失敗'); renderList(); }
+}
+
+// リスト
 function toggleSheet() { document.getElementById('bottom-sheet').classList.contains('open') ? closeSheet() : openSheet(); }
 function openSheet() {
-  document.getElementById('bottom-sheet').classList.add('open');
-  document.getElementById('sheet-backdrop').classList.add('open');
-  document.getElementById('fabs').classList.add('sheet-open');
-  document.getElementById('btn-add-wrap').classList.add('sheet-open');
+  ['bottom-sheet','sheet-backdrop'].forEach(id => document.getElementById(id).classList.add('open'));
+  ['fabs','btn-add-wrap'].forEach(id => document.getElementById(id).classList.add('sheet-open'));
 }
 function closeSheet() {
-  document.getElementById('bottom-sheet').classList.remove('open');
-  document.getElementById('sheet-backdrop').classList.remove('open');
-  document.getElementById('fabs').classList.remove('sheet-open');
-  document.getElementById('btn-add-wrap').classList.remove('sheet-open');
+  ['bottom-sheet','sheet-backdrop'].forEach(id => document.getElementById(id).classList.remove('open'));
+  ['fabs','btn-add-wrap'].forEach(id => document.getElementById(id).classList.remove('sheet-open'));
 }
 
 function renderList() {
   const list = document.getElementById('pin-list');
-  if (!pins.length) {
-    list.innerHTML = `<div class="empty-state"><div class="icon">🗺️</div><p>地図をタップして<br>掲示場所を登録しよう</p></div>`;
-    return;
-  }
+  if (!pins.length) { list.innerHTML = `<div class="empty-state"><div class="icon">🗺️</div><p>地図をタップして<br>候補地を登録しよう</p></div>`; return; }
   list.innerHTML = pins.slice().reverse().map(p => {
-    const color = sc(p.status);
-    const idNum = p.id ? p.id.replace('P-', '') : '?';
-    return `<div class="pin-card" id="card-${p.id}" onclick="focusPin('${p.id}')">
-      <div class="pin-id-circle" style="border-color:${color};color:${color};background:${color}15">
-        <div class="pin-id-label">P</div>
-        <div class="pin-id-num">${idNum}</div>
-      </div>
+    const color = sColor(p.status); const emoji = sEmoji(p.status);
+    return `<div class="pin-card" id="card-${p.id}" style="border-color:${color}22">
+      <div class="pin-dot" style="background:${color}22">${emoji}</div>
       <div class="pin-info">
         <div class="pin-name">${p.name}</div>
         <div class="pin-coords">${parseFloat(p.latlng.lat).toFixed(4)}, ${parseFloat(p.latlng.lng).toFixed(4)}</div>
         ${p.note ? `<div class="pin-note-text">${p.note}</div>` : ''}
-        <span class="pin-badge" style="background:${color}22;color:${color}">${se(p.status)} ${p.status}</span>
-        ${!p.synced ? `<span class="pin-badge" style="background:rgba(255,59,48,0.15);color:#FF3B30;margin-left:4px;font-size:9px">未同期</span>` : ''}
+        <div class="pin-bottom">
+          <span class="pin-badge" style="background:${color}22;color:${color}" onclick="openStatusModal('${p.id}')">${emoji} ${p.status} ✎</span>
+        </div>
       </div>
-      ${p.photo ? `<img class="pin-thumb" src="${p.photo}">` : ''}
-      <button class="pin-del" onclick="deletePin(event,'${p.id}')">🗑</button>
+      <div class="pin-actions">
+        <button class="pin-btn" onclick="focusPin('${p.id}')">🗺️</button>
+        <button class="pin-btn" onclick="deletePin(event,'${p.id}')">🗑</button>
+      </div>
     </div>`;
   }).join('');
 }
@@ -590,7 +629,7 @@ async function deletePin(e, id) {
   pins[idx].marker.remove(); pins.splice(idx, 1);
   renderList(); updateStats();
   showSync('syncing', 'シートから削除中...');
-  const ok = await postToSheet('delete', { id });
+  const ok = await deleteFromSheet(id);
   if (ok) { showSync('ok', '🗑 削除しました'); showToast('削除しました'); }
   else { showSync('error', '⚠️ シート削除失敗'); }
 }
@@ -603,10 +642,8 @@ function updateStats() {
 
 let toastTimer;
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
 }
 </script>
 </body>
