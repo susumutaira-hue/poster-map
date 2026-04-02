@@ -233,6 +233,9 @@
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(0,122,255,0.5)} 70%{box-shadow:0 0 0 14px rgba(0,122,255,0)} 100%{box-shadow:0 0 0 0 rgba(0,122,255,0)} }
+  @keyframes tpulse { 0%{box-shadow:0 0 0 0 rgba(208,2,27,0.4)} 70%{box-shadow:0 0 0 14px rgba(208,2,27,0)} 100%{box-shadow:0 0 0 0 rgba(208,2,27,0)} }
+  .leaflet-tooltip { background: #D0021B; color: white; border: none; font-size: 12px; font-weight: 700; font-family: "Noto Sans JP", sans-serif; padding: 4px 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .leaflet-tooltip::before { border-top-color: #D0021B !important; }
   .fab-locate.locating { animation: pulse 1.2s infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .spinning { display: inline-block; animation: spin 0.8s linear infinite; }
@@ -366,6 +369,7 @@ let pins = [];
 let userMarker = null;
 let markersMap = {};
 let editingPinId = null;
+let tempMarker = null;
 
 function makeIcon(status) {
   const color = sColor(status);
@@ -385,12 +389,19 @@ function makePopup(pin) {
   </div>`;
 }
 
-map.on('click', (e) => {
+const tempIcon = L.divIcon({
+  html: `<div style="width:32px;height:32px;background:rgba(208,2,27,0.2);border:3px solid #D0021B;border-radius:50%;animation:tpulse 1.2s infinite"></div>`,
+  iconSize:[32,32], iconAnchor:[16,16], className:""
+});
+
+map.on("click", (e) => {
   tappedLatLng = e.latlng;
-  const btn = document.getElementById('btn-add');
-  btn.style.background = '#FF375F';
-  setTimeout(() => btn.style.background = 'var(--red)', 200);
-  showToast('タップした場所を選択中 ✓');
+  if (tempMarker) tempMarker.remove();
+  tempMarker = L.marker(e.latlng, { icon: tempIcon, zIndexOffset: 1000 }).addTo(map);
+  tempMarker.bindTooltip("ここに登録", { permanent: true, direction: "top", offset: [0, -16] }).openTooltip();
+  const btn = document.getElementById("btn-add");
+  btn.style.background = "#FF375F";
+  setTimeout(() => btn.style.background = "var(--red)", 200);
 });
 
 function onAddTap() {
@@ -534,6 +545,7 @@ async function savePin() {
   pin.marker = marker; markersMap[id] = marker; pins.push(pin);
 
   closeModal(); renderList(); updateStats(); tappedLatLng = null;
+  if (tempMarker) { tempMarker.remove(); tempMarker = null; }
 
   showSync('syncing', 'スプレッドシートに保存中...');
   const ok = await addToSheet(pin);
