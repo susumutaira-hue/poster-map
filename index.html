@@ -20,12 +20,6 @@
     --white: #FFFFFF;
     --grey: #8E8E93;
     --safe-bottom: env(safe-area-inset-bottom, 16px);
-    /* ステータスカラー */
-    --c-未交渉: #8E8E93;
-    --c-交渉中: #FFD60A;
-    --c-許可: #30D158;
-    --c-NG: #FF3B30;
-    --c-掲示済: #007AFF;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -35,7 +29,6 @@
   .leaflet-control-attribution { font-size: 9px !important; }
   .leaflet-control-zoom { display: none; }
 
-  /* TOP BAR */
   .topbar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 400;
     padding: 12px 16px;
@@ -55,10 +48,9 @@
     background: rgba(28,28,30,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-radius: 16px; padding: 6px 14px; text-align: center; min-width: 52px;
   }
-  .stat-num { font-size: 20px; font-weight: 700; line-height: 1; color: var(--white); }
+  .stat-num { font-size: 20px; font-weight: 700; line-height: 1; }
   .stat-label { font-size: 9px; color: var(--grey); margin-top: 1px; }
 
-  /* SYNC BADGE */
   .sync-badge {
     position: fixed; top: calc(80px + env(safe-area-inset-top, 0px));
     left: 50%; transform: translateX(-50%); z-index: 400;
@@ -73,7 +65,6 @@
   .sync-dot.error { background: var(--red); }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  /* FABs */
   .fabs {
     position: fixed; right: 16px; bottom: calc(140px + var(--safe-bottom));
     z-index: 400; display: flex; flex-direction: column; gap: 12px;
@@ -87,10 +78,8 @@
   }
   .fab:active { transform: scale(0.9); }
   .fab-locate { background: var(--white); color: var(--dark); }
-  .fab-reload { background: var(--card-bg); color: var(--white); border: 1px solid rgba(255,255,255,0.12); }
-  .fab-list { background: var(--card-bg); color: var(--white); border: 1px solid rgba(255,255,255,0.12); }
+  .fab-reload, .fab-list { background: var(--card-bg); color: var(--white); border: 1px solid rgba(255,255,255,0.12); }
 
-  /* ADD BUTTON */
   .btn-add-wrap {
     position: fixed; bottom: calc(70px + var(--safe-bottom));
     left: 50%; transform: translateX(-50%); z-index: 400;
@@ -106,7 +95,6 @@
   }
   .btn-add:active { transform: scale(0.95); }
 
-  /* BOTTOM SHEET */
   .sheet-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 490; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
   .sheet-backdrop.open { opacity: 1; pointer-events: all; }
   .bottom-sheet {
@@ -122,14 +110,8 @@
   .sheet-subtitle { font-size: 11px; color: var(--grey); margin-top: 2px; }
   .sheet-close { margin-left: auto; background: var(--surface); border: none; color: var(--grey); width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-  /* STATUS LEGEND */
-  .legend {
-    display: flex; gap: 6px; padding: 0 16px 10px; flex-wrap: wrap; flex-shrink: 0;
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 4px;
-    font-size: 10px; color: var(--grey);
-  }
+  .legend { display: flex; gap: 8px; padding: 0 16px 10px; flex-wrap: wrap; flex-shrink: 0; }
+  .legend-item { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--grey); }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
   .pin-list { flex: 1; overflow-y: auto; padding: 0 12px 12px; -webkit-overflow-scrolling: touch; }
@@ -145,19 +127,21 @@
     cursor: pointer; border: 1.5px solid transparent; transition: opacity 0.15s;
   }
   .pin-card:active { opacity: 0.7; }
-  .pin-card.active { border-color: var(--red); }
 
-  .pin-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .pin-id-circle {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px; border: 2px solid;
+  }
+  .pin-id-label { font-size: 8px; font-weight: 700; opacity: 0.7; line-height: 1; }
+  .pin-id-num { font-size: 14px; font-weight: 700; line-height: 1.2; }
+
   .pin-info { flex: 1; min-width: 0; }
   .pin-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pin-coords { font-size: 11px; color: var(--grey); margin-top: 2px; }
+  .pin-coords { font-size: 10px; color: var(--grey); margin-top: 2px; }
   .pin-note-text { font-size: 12px; color: var(--grey); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  .pin-badge {
-    font-size: 11px; font-weight: 700; padding: 3px 10px;
-    border-radius: 10px; margin-top: 6px; display: inline-block;
-  }
-  .pin-thumb { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+  .pin-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-top: 6px; display: inline-block; }
+  .pin-thumb { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
   .pin-del { background: none; border: none; color: var(--grey); font-size: 20px; cursor: pointer; padding: 4px; flex-shrink: 0; align-self: center; }
 
   /* MODAL */
@@ -175,7 +159,6 @@
   .modal-coords { font-size: 11px; color: var(--grey); margin-bottom: 20px; }
 
   .form-label { font-size: 12px; font-weight: 600; color: var(--grey); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; display: block; }
-
   .form-input {
     width: 100%; background: var(--surface); border: 1.5px solid rgba(255,255,255,0.08);
     border-radius: 12px; color: var(--white); font-family: 'Noto Sans JP', sans-serif;
@@ -185,30 +168,18 @@
   .form-input:focus { border-color: var(--red); }
   textarea.form-input { min-height: 80px; resize: none; }
 
-  /* STATUS BUTTONS 5個 */
-  .status-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px;
-  }
-  .status-grid .last-row {
-    grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  }
-
+  .status-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+  .status-last { grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .status-btn {
-    padding: 12px 6px; border-radius: 12px;
-    border: 1.5px solid rgba(255,255,255,0.1); background: var(--surface);
-    color: var(--grey); font-size: 13px; font-weight: 600;
-    font-family: 'Noto Sans JP', sans-serif; cursor: pointer;
-    text-align: center; transition: all 0.2s; line-height: 1.3;
-  }
-  .status-btn.selected {
-    border-width: 2px;
+    padding: 13px 6px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.1);
+    background: var(--surface); color: var(--grey); font-size: 13px; font-weight: 600;
+    font-family: 'Noto Sans JP', sans-serif; cursor: pointer; text-align: center; transition: all 0.2s;
   }
 
   .photo-upload {
     width: 100%; background: var(--surface); border: 1.5px dashed rgba(255,255,255,0.2);
     border-radius: 12px; padding: 20px; display: flex; flex-direction: column;
-    align-items: center; gap: 6px; cursor: pointer; margin-bottom: 16px;
-    color: var(--grey); font-size: 13px;
+    align-items: center; gap: 6px; cursor: pointer; margin-bottom: 16px; color: var(--grey); font-size: 13px;
   }
   .photo-upload .icon { font-size: 30px; }
   input[type="file"] { display: none; }
@@ -225,7 +196,6 @@
   .btn-submit:disabled { opacity: 0.5; }
   .btn-cancel-modal { width: 100%; background: var(--surface); color: var(--grey); border: none; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 600; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; }
 
-  /* TOAST */
   .toast {
     position: fixed; bottom: calc(90px + var(--safe-bottom));
     left: 50%; transform: translateX(-50%) translateY(10px);
@@ -252,7 +222,7 @@
   </div>
   <div class="topbar-stats">
     <div class="stat-pill">
-      <div class="stat-num" id="total-count">0</div>
+      <div class="stat-num" id="total-count" style="color:#FFD60A">0</div>
       <div class="stat-label">登録</div>
     </div>
     <div class="stat-pill">
@@ -282,7 +252,7 @@
   <div class="sheet-handle"></div>
   <div class="sheet-header">
     <div>
-      <div class="sheet-title">📋 候補地一覧</div>
+      <div class="sheet-title">📋 掲示場所一覧</div>
       <div class="sheet-subtitle" id="sheet-subtitle">読み込み中...</div>
     </div>
     <button class="sheet-close" onclick="closeSheet()">✕</button>
@@ -302,7 +272,7 @@
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">📍 候補地を登録</div>
+    <div class="modal-title">📍 掲示場所を登録</div>
     <div class="modal-coords" id="modal-coords"></div>
 
     <label class="form-label">場所の名前</label>
@@ -310,16 +280,16 @@
 
     <label class="form-label">ステータス</label>
     <div class="status-grid" id="status-grid">
-      <button class="status-btn" onclick="selectStatus('未交渉')">📋 未交渉</button>
-      <button class="status-btn" onclick="selectStatus('交渉中')">💬 交渉中</button>
-      <button class="status-btn" onclick="selectStatus('許可')">✅ 許可</button>
-      <div class="last-row">
+      <button class="status-btn" onclick="selectStatus('未交渉')">📋<br>未交渉</button>
+      <button class="status-btn" onclick="selectStatus('交渉中')">💬<br>交渉中</button>
+      <button class="status-btn" onclick="selectStatus('許可')">✅<br>許可</button>
+      <div class="status-last">
         <button class="status-btn" onclick="selectStatus('NG')">❌ NG</button>
         <button class="status-btn" onclick="selectStatus('掲示済')">📌 掲示済</button>
       </div>
     </div>
 
-    <label class="form-label">メモ</label>
+    <label class="form-label">備考</label>
     <textarea class="form-input" id="inp-note" placeholder="所有者名・確認事項など"></textarea>
 
     <label class="form-label">写真</label>
@@ -338,9 +308,8 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzg_DcziyRO3MXQD-OO_LB3V7asllKys7GHZro5qpe5FxjvjxuOSp2_BoQhdZj31dVd/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzCp1BNzWyEcooqj2iJhajNunlPLhB6m7HsVtdibuCAi3UnXnbQnDPfYKGxVX6OOxFc/exec';
 
-// ステータス設定
 const STATUS_CONFIG = {
   '未交渉': { color: '#8E8E93', emoji: '📋' },
   '交渉中': { color: '#FFD60A', emoji: '💬' },
@@ -348,11 +317,9 @@ const STATUS_CONFIG = {
   'NG':     { color: '#FF3B30', emoji: '❌' },
   '掲示済': { color: '#007AFF', emoji: '📌' },
 };
+function sc(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).color; }
+function se(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).emoji; }
 
-function statusColor(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).color; }
-function statusEmoji(s) { return (STATUS_CONFIG[s] || STATUS_CONFIG['未交渉']).emoji; }
-
-// MAP
 const map = L.map('map', { zoomControl: false }).setView([35.6812, 139.7671], 14);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
 
@@ -364,11 +331,21 @@ let userMarker = null;
 let markersMap = {};
 
 function makeIcon(status) {
-  const color = statusColor(status);
+  const color = sc(status);
   return L.divIcon({
     html: `<div style="width:24px;height:30px;background:${color};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid white;box-shadow:0 2px 10px rgba(0,0,0,0.4)"></div>`,
     iconSize:[24,30], iconAnchor:[12,30], className:''
   });
+}
+
+function makePopup(pin) {
+  const color = sc(pin.status);
+  return `<div style="font-family:'Noto Sans JP',sans-serif;min-width:160px;font-size:13px">
+    <div style="font-size:11px;font-weight:700;color:${color};margin-bottom:4px">${pin.id}</div>
+    <strong>${pin.name}</strong><br>
+    <span style="color:${color};font-size:11px;font-weight:700">${se(pin.status)} ${pin.status}</span>
+    ${pin.note ? `<p style="margin-top:5px;font-size:12px;color:#555">${pin.note}</p>` : ''}
+  </div>`;
 }
 
 map.on('click', (e) => {
@@ -384,7 +361,6 @@ function onAddTap() {
   openModal();
 }
 
-// LOCATE
 function locateMe() {
   const btn = document.getElementById('btn-locate');
   btn.classList.add('locating'); btn.textContent = '⏳';
@@ -408,51 +384,39 @@ window.addEventListener('load', () => {
   loadFromSheet();
 });
 
-// SYNC
 function showSync(state, msg) {
   const badge = document.getElementById('sync-badge');
-  const dot = document.getElementById('sync-dot');
+  document.getElementById('sync-dot').className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
   document.getElementById('sync-text').textContent = msg;
-  dot.className = 'sync-dot' + (state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
   badge.classList.add('show');
   if (state === 'ok') setTimeout(() => badge.classList.remove('show'), 2500);
 }
 
-// JSONP形式でGASにアクセス
 function jsonpFetch(url) {
   return new Promise((resolve, reject) => {
     const cbName = 'cb_' + Date.now();
     const script = document.createElement('script');
-    const timer = setTimeout(() => {
-      delete window[cbName];
-      script.remove();
-      reject(new Error('timeout'));
-    }, 10000);
-    window[cbName] = (data) => {
-      clearTimeout(timer);
-      delete window[cbName];
-      script.remove();
-      resolve(data);
-    };
+    const timer = setTimeout(() => { delete window[cbName]; script.remove(); reject(new Error('timeout')); }, 10000);
+    window[cbName] = (data) => { clearTimeout(timer); delete window[cbName]; script.remove(); resolve(data); };
     script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName + '&t=' + Date.now();
-    script.onerror = () => { clearTimeout(timer); reject(new Error('script error')); };
+    script.onerror = () => { clearTimeout(timer); reject(new Error('error')); };
     document.head.appendChild(script);
   });
 }
 
 async function loadFromSheet() {
-  showSync('syncing', 'スプレッドシートを読み込み中...');
+  showSync('syncing', 'データを読み込み中...');
   try {
     const data = await jsonpFetch(GAS_URL);
     Object.values(markersMap).forEach(m => m.remove());
     markersMap = {}; pins = [];
 
-    data.forEach((p, i) => {
+    data.forEach((p) => {
       if (!p.lat || !p.lng) return;
       const pin = {
         id: p.id, latlng: L.latLng(parseFloat(p.lat), parseFloat(p.lng)),
         name: p.name, note: p.note, status: p.status || '未交渉',
-        photo: null, number: i + 1, synced: true
+        photo: null, synced: true
       };
       const marker = L.marker(pin.latlng, { icon: makeIcon(pin.status) }).addTo(map);
       marker.bindPopup(makePopup(pin));
@@ -463,23 +427,11 @@ async function loadFromSheet() {
 
     renderList(); updateStats();
     showSync('ok', `✅ ${pins.length}件を読み込みました`);
-    document.getElementById('sheet-subtitle').textContent = `${pins.length}件 · シート同期済み`;
   } catch(e) {
     showSync('error', '⚠️ 読み込み失敗');
     showToast('⚠️ 読み込みに失敗しました');
-    document.getElementById('sheet-subtitle').textContent = '読み込み失敗';
+    document.getElementById('sheet-subtitle').textContent = '読み込み失敗 - 🔄で再試行';
   }
-}
-
-function makePopup(pin) {
-  const color = statusColor(pin.status);
-  const emoji = statusEmoji(pin.status);
-  return `<div style="font-family:'Noto Sans JP',sans-serif;min-width:150px;font-size:13px">
-    <strong>${pin.name}</strong><br>
-    <span style="color:${color};font-size:11px;font-weight:700">${emoji} ${pin.status}</span>
-    ${pin.note ? `<p style="margin-top:5px;font-size:12px;color:#555">${pin.note}</p>` : ''}
-    ${pin.photo ? `<img src="${pin.photo}" style="width:100%;max-height:100px;object-fit:cover;border-radius:6px;margin-top:6px">` : ''}
-  </div>`;
 }
 
 async function postToSheet(action, pinData) {
@@ -493,7 +445,6 @@ async function postToSheet(action, pinData) {
   } catch(e) { return false; }
 }
 
-// MODAL
 function openModal() {
   document.getElementById('modal-coords').textContent = `緯度 ${tappedLatLng.lat.toFixed(5)}　経度 ${tappedLatLng.lng.toFixed(5)}`;
   document.getElementById('inp-name').value = '';
@@ -513,14 +464,11 @@ function closeModal() { document.getElementById('modal').classList.remove('open'
 function selectStatus(s) {
   selectedStatus = s;
   document.querySelectorAll('.status-btn').forEach(btn => {
-    const label = btn.textContent.trim().replace(/^.\s/, '');
-    const isSelected = label === s || btn.textContent.includes(s);
-    btn.classList.toggle('selected', isSelected);
-    if (isSelected) {
-      const color = statusColor(s);
-      btn.style.borderColor = color;
-      btn.style.color = color;
-      btn.style.background = color + '22';
+    const matches = btn.textContent.includes(s);
+    if (matches) {
+      btn.style.borderColor = sc(s);
+      btn.style.color = sc(s);
+      btn.style.background = sc(s) + '22';
     } else {
       btn.style.borderColor = '';
       btn.style.color = '';
@@ -543,31 +491,52 @@ document.getElementById('inp-photo').onchange = (e) => {
 async function savePin() {
   const name = document.getElementById('inp-name').value.trim() || '候補地';
   const note = document.getElementById('inp-note').value.trim();
-  const id = Date.now();
+  const tempId = 'P-???';
+
   const btn = document.getElementById('btn-submit');
   btn.innerHTML = '<span class="spinning">⏳</span> 保存中...';
   btn.disabled = true;
 
-  const pin = { id, latlng: tappedLatLng, name, note, status: selectedStatus, photo: photoData, number: pins.length + 1, synced: false };
+  showSync('syncing', 'スプレッドシートに保存中...');
+
+  // GASに送信してIDを受け取る
+  let assignedId = tempId;
+  try {
+    const res = await fetch(GAS_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'add', name, lat: tappedLatLng.lat, lng: tappedLatLng.lng, status: selectedStatus, note, photoUrl: '' }),
+      headers: { 'Content-Type': 'text/plain' }
+    });
+    const result = await res.json();
+    if (result.success && result.id) assignedId = result.id;
+  } catch(e) {}
+
+  const pin = {
+    id: assignedId, latlng: tappedLatLng, name, note,
+    status: selectedStatus, photo: photoData, synced: assignedId !== tempId
+  };
+
   const marker = L.marker(tappedLatLng, { icon: makeIcon(selectedStatus) }).addTo(map);
   marker.bindPopup(makePopup(pin));
   marker.openPopup();
   pin.marker = marker;
-  markersMap[id] = marker;
+  markersMap[assignedId] = marker;
   pins.push(pin);
 
   closeModal();
   renderList(); updateStats();
   tappedLatLng = null;
 
-  showSync('syncing', 'スプレッドシートに保存中...');
-  const ok = await postToSheet('add', { id, name, lat: pin.latlng.lat, lng: pin.latlng.lng, status: selectedStatus, note });
-  if (ok) { pin.synced = true; showSync('ok', '✅ シートに保存しました'); showToast('✅ 登録・同期しました！'); }
-  else { showSync('error', '⚠️ シート保存失敗'); showToast('⚠️ シート同期に失敗しました'); }
+  if (pin.synced) {
+    showSync('ok', `✅ ${assignedId} として登録しました`);
+    showToast(`✅ ${assignedId} で登録しました！`);
+  } else {
+    showSync('error', '⚠️ シート保存失敗');
+    showToast('⚠️ シート同期に失敗しました');
+  }
   renderList();
 }
 
-// SHEET UI
 function toggleSheet() { document.getElementById('bottom-sheet').classList.contains('open') ? closeSheet() : openSheet(); }
 function openSheet() {
   document.getElementById('bottom-sheet').classList.add('open');
@@ -585,20 +554,23 @@ function closeSheet() {
 function renderList() {
   const list = document.getElementById('pin-list');
   if (!pins.length) {
-    list.innerHTML = `<div class="empty-state"><div class="icon">🗺️</div><p>地図をタップして<br>候補地を登録しよう</p></div>`;
+    list.innerHTML = `<div class="empty-state"><div class="icon">🗺️</div><p>地図をタップして<br>掲示場所を登録しよう</p></div>`;
     return;
   }
   list.innerHTML = pins.slice().reverse().map(p => {
-    const color = statusColor(p.status);
-    const emoji = statusEmoji(p.status);
+    const color = sc(p.status);
+    const idNum = p.id ? p.id.replace('P-', '') : '?';
     return `<div class="pin-card" id="card-${p.id}" onclick="focusPin('${p.id}')">
-      <div class="pin-dot" style="background:${color}22;color:${color}">${emoji}</div>
+      <div class="pin-id-circle" style="border-color:${color};color:${color};background:${color}15">
+        <div class="pin-id-label">P</div>
+        <div class="pin-id-num">${idNum}</div>
+      </div>
       <div class="pin-info">
         <div class="pin-name">${p.name}</div>
         <div class="pin-coords">${parseFloat(p.latlng.lat).toFixed(4)}, ${parseFloat(p.latlng.lng).toFixed(4)}</div>
         ${p.note ? `<div class="pin-note-text">${p.note}</div>` : ''}
-        <span class="pin-badge" style="background:${color}22;color:${color}">${emoji} ${p.status}</span>
-        ${p.synced ? '' : `<span class="pin-badge" style="background:rgba(255,59,48,0.15);color:#FF3B30;margin-left:4px;font-size:9px">未同期</span>`}
+        <span class="pin-badge" style="background:${color}22;color:${color}">${se(p.status)} ${p.status}</span>
+        ${!p.synced ? `<span class="pin-badge" style="background:rgba(255,59,48,0.15);color:#FF3B30;margin-left:4px;font-size:9px">未同期</span>` : ''}
       </div>
       ${p.photo ? `<img class="pin-thumb" src="${p.photo}">` : ''}
       <button class="pin-del" onclick="deletePin(event,'${p.id}')">🗑</button>
@@ -634,7 +606,7 @@ function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
 }
 </script>
 </body>
